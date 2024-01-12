@@ -11,23 +11,40 @@ const max = 99
 //bottone per far cominciare il gioco
 button.innerText = 'Start game';
 
-// il timer
-timer.innerText = 10;
+//il gioco inizia quando click sul bottone 
+button.addEventListener('click',() =>{
 
-//gneratore di numeri casuali
-const randomNums = []
+    //TODO compare il timer toglire il d-none 
+    // il timer
+    let countDownNum = 10;
+    timer.innerText = countDownNum;
+    
+    //creo il timer
+    const countDownTimer = setInterval(() =>{
+    
+        //blocco il timer allo 0
+        if(countDownNum === 0){ 
+            clearInterval(countDownTimer);
+        }else{
+        timer.innerText = --countDownNum;
+        }
+    }, 1000);
 
-// ciclo che crea un array di X numeri casuali da 1 a 99
-while(randomNums.length < level){
+    //gneratore di numeri casuali
+    const randomNums = []
 
-    let randomNum = Math.floor(Math.random()*max)+1
-    if(!randomNums.includes(randomNum)) randomNums.push(randomNum);
-}
+    // ciclo che crea un array di X numeri casuali da 1 a 99
+    while(randomNums.length < level){
 
-const userNums = [];
+        let randomNum = Math.floor(Math.random()*max)+1
+        if(!randomNums.includes(randomNum)) randomNums.push(randomNum);
+    }
 
-while(userNums.length < randomNums.length){
+    const userNums = [];
 
-    let userNum = parseInt(prompt('Dammi un numero'));
-    if(!userNums.includes(userNum)) userNums.push(userNum);
-}
+    while(userNums.length < randomNums.length){
+
+        let userNum = parseInt(prompt('Dammi un numero'));
+        if(!userNums.includes(userNum)) userNums.push(userNum);
+    }
+})
