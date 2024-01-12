@@ -8,6 +8,15 @@ const nums = document.querySelector('.nums')
 const level = 4
 const max = 99
 
+/*  TODO 
+    - sistemare i layout
+    - togliere il bottone quando clicco start 
+    - far vedere i randomNums fino a quando non arrivo a 0 con il countdown
+    - fare diversi livelli
+        - in base al livello aumentare i numeri e/o diminuire il tempo
+    - mettere uno score e mettere lo stesso bottone con 'RIGIOCA'
+ */
+
 //bottone per far cominciare il gioco
 button.innerText = 'Start game';
 
@@ -51,9 +60,10 @@ button.addEventListener('click',() =>{
             if(!userNums.includes(userNum)) userNums.push(userNum);
         }
         
+        // controlla i numeri dell'utente e quelli giusti vengono messi in un arry 
         for(let i = 0; i < userNums.length; i++){
-            if(randomNums.includes(userNums[i])){
-                findNums.push(userNums[i]);
+            if(userNums.includes(randomNums[i])){
+                findNums.push(randomNums[i]);
             }
         }
         console.log(findNums);
