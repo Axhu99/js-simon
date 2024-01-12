@@ -16,15 +16,17 @@ button.addEventListener('click',() =>{
 
     //TODO compare il timer toglire il d-none 
     // il timer
-    let countDownNum = 10;
+    let countDownNum = 5;
     timer.innerText = countDownNum;
-    
+    const userNums = [];
+    const findNums = [];
     //creo il timer
     const countDownTimer = setInterval(() =>{
     
         //blocco il timer allo 0
         if(countDownNum === 0){ 
             clearInterval(countDownTimer);
+
         }else{
         timer.innerText = --countDownNum;
         }
@@ -39,12 +41,21 @@ button.addEventListener('click',() =>{
         let randomNum = Math.floor(Math.random()*max)+1
         if(!randomNums.includes(randomNum)) randomNums.push(randomNum);
     }
+    console.log(randomNums);
 
-    const userNums = [];
-
-    while(userNums.length < randomNums.length){
-
-        let userNum = parseInt(prompt('Dammi un numero'));
-        if(!userNums.includes(userNum)) userNums.push(userNum);
-    }
+    // deve chiedermi i numeri dopo che il countdown e' finito
+    setTimeout(() =>{
+        while(userNums.length < randomNums.length){
+        
+            let userNum = parseInt(prompt('Dammi un numero'));
+            if(!userNums.includes(userNum)) userNums.push(userNum);
+        }
+        
+        for(let i = 0; i < userNums.length; i++){
+            if(randomNums.includes(userNums[i])){
+                findNums.push(userNums[i]);
+            }
+        }
+        console.log(findNums);
+    },  (countDownNum+1) * 1000);
 })
