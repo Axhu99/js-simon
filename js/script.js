@@ -23,3 +23,11 @@ while(randomNums.length < level){
     let randomNum = Math.floor(Math.random()*max)+1
     if(!randomNums.includes(randomNum)) randomNums.push(randomNum);
 }
+
+const userNums = [];
+
+while(userNums.length < randomNums.length){
+
+    let userNum = parseInt(prompt('Dammi un numero'));
+    if(!userNums.includes(userNum)) userNums.push(userNum);
+}
