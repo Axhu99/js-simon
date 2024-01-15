@@ -12,9 +12,7 @@ const userNums = [];
 let findNums = [];
 
 /*  TODO 
-    - fare le funzioni 
     - sistemare i layout
-    - togliere il bottone quando clicco start 
     - far vedere i randomNums fino a quando non arrivo a 0 con il countdown
     - fare diversi livelli
         - in base al livello aumentare i numeri e/o diminuire il tempo
@@ -50,31 +48,43 @@ button.innerText = 'Start game';
 //il gioco inizia quando click sul bottone 
 button.addEventListener('click', () =>{
 
+    //riaggiungo la lista
+    nums.classList.remove('d-block');
+
+    //Tolgo il bottone
+    button.classList.add('d-none')
+
     //TODO compare il timer toglire il d-none 
     // il timer
     let countDownNum = 5;
     timer.innerText = countDownNum;
- 
-    const countDownTimer = setInterval(() =>{
-    
-        //blocco il timer allo 0
-        if(countDownNum === 0){ 
-            clearInterval(countDownTimer);
-
-        }else{
-        timer.innerText = --countDownNum;
-        }
-    }, 1000);
 
     // ciclo che crea un array di X numeri casuali da 1 a MAX
     randomNums = getRandomNumbs(randomNums, level, max);
     // per vedere gli array di risultati
+    nums.innerText = randomNums;
     console.log(randomNums);
+ 
+    const countDownTimer = setInterval(() =>{
+        
+        timer.innerText = --countDownNum;
+        //blocco il timer allo 0
+        if(countDownNum === 0){ 
+            
+            // tolgo la lista di numeri casuali
+            nums.classList.add('d-none');
+            
+            clearInterval(countDownTimer);
+            
+        }
+
+    }, 1000);
 
     // deve chiedermi i numeri dopo che il countdown e' finito
     setTimeout(() =>{
-        while(userNums.length < randomNums.length){
             
+        while(userNums.length < randomNums.length){
+
             // esegue un prompt fino a quando non mi da X numeri diversi
             let userNum = parseInt(prompt('Dammi un numero'));
             if(!userNums.includes(userNum)) userNums.push(userNum);
@@ -84,5 +94,5 @@ button.addEventListener('click', () =>{
         findNums = getNumsIncluse(userNums, randomNums, findNums);
         
         console.log(findNums);
-    },  (countDownNum+1) * 1000);
+    },  (countDownNum + 1) * 1000);
 })
